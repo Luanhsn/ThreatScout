@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>ThreatScout</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #0d1117;
+            color: #e6edf3;
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #58a6ff;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            color: #8b949e;
+            margin-bottom: 40px;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px 16px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #e6edf3;
+            font-size: 1rem;
+            font-family: monospace;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #58a6ff;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #1f6feb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #388bfd;
+        }
+
+        #result {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .score-box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .score-box .score {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .low    { color: #3fb950; }
+        .medium { color: #d29922; }
+        .high   { color: #f85149; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #161b22;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #21262d;
+        }
+
+        th {
+            color: #8b949e;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ThreatScout</h1>
+    <p class="subtitle">IP, Domain oder URL auf Bedrohungen prüfen</p>
+
+    <div class="search-bar">
+        <input type="text" id="ipInput" placeholder="z.B. 1.1.1.1 oder example.com" />
+        <button onclick="check()">Prüfen</button>
+    </div>
+
+    <div id="result"></div>
+
+</body>
+</html>
