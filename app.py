@@ -1,0 +1,56 @@
+from flask import Flask, request, jsonify, render_template
+from dotenv import load_dotenv
+import requests
+import os
+
+app = Flask(__name__)
+load_dotenv()
+
+abuseipid_api = os.getenv("ABUSEIPDB_KEY")
+otx_key = os.getenv("OTX_KEY")
+virustotal_key= os.getenv("VIRUSTOTAL_KEY")
+
+
+def get_abuseipdb(ip):
+    pass
+
+
+def get_alienvault(ip):
+    pass
+
+
+def get_virustotal(ip):
+    pass
+
+
+def calculate_score(abuse_data, otx_data, vt_data):
+    pass
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/check")
+def check():
+    ip = request.args.get("ip")
+    if not ip:
+        return jsonify({"error": "Keine IP angegeben"}), 400
+
+    abuse_data = get_abuseipdb(ip)
+    otx_data = get_alienvault(ip)
+    vt_data = get_virustotal(ip)
+    score = calculate_score(abuse_data, otx_data, vt_data)
+
+    return jsonify({
+        "ip": ip,
+        "score": score,
+        "abuseipdb": abuse_data,
+        "alienvault": otx_data,
+        "virustotal": vt_data
+    })
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
