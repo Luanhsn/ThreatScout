@@ -25,8 +25,10 @@ def get_alienvault(ip):
     return response.json()
 
 def get_virustotal(ip):
-    pass
-
+    url = f"https://www.virustotal.com/api/v3/ip_addresses/{ip}"
+    headers = {"x-apikey": virustotal_key}
+    response = requests.get(url, headers=headers)
+    return response.json()
 
 def calculate_score(abuse_data, otx_data, vt_data):
     pass
