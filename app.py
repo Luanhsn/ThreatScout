@@ -31,8 +31,12 @@ def get_virustotal(ip):
     return response.json()
 
 def calculate_score(abuse_data, otx_data, vt_data):
-    pass
+    abuseipdb_score = abuse_data["data"]["abuseConfidenceScore"]
+    alienvault_score = min(otx_data["pulse_info"]["count"] * 10, 100)
+    virustotal_score = min(vt_data["data"]["attributes"]["last_analysis_stats"]["malicious"] * 5, 100)
 
+    score = (abuseipdb_score + alienvault_score + virustotal_score) / 3
+    return score
 
 @app.route("/")
 def index():
