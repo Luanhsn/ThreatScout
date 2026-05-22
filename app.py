@@ -19,8 +19,10 @@ def get_abuseipdb(ip):
     return response.json()
 
 def get_alienvault(ip):
-    pass
-
+    url = f"https://otx.alienvault.com/api/v1/indicators/IPv4/{ip}/general"
+    headers = {"X-OTX-API-KEY": otx_key}
+    response = requests.get(url, headers=headers)
+    return response.json()
 
 def get_virustotal(ip):
     pass
