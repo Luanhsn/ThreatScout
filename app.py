@@ -42,7 +42,6 @@ def calculate_score(abuse_data, otx_data, vt_data):
 def index():
     return render_template("index.html")
 
-
 @app.route("/check")
 def check():
     ip = request.args.get("ip")
@@ -64,4 +63,4 @@ def check():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
