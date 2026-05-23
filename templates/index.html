@@ -107,6 +107,7 @@
             font-weight: normal;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -144,6 +145,16 @@
                     </tr>
                 </table>
             `;
+            new Chart(document.getElementById("myChart"), {
+                type: "bar",
+                data: {
+                    labels: ["AbuseIPDB", "AlienVault", "VirusTotal"],
+                    datasets: [{
+                        data: [data.abuseipdb, data.alienvault, data.virustotal],
+                        backgroundColor: ["#f85149", "#d29922", "#3fb950"]
+                    }]
+                }
+            });
         }
     </script>
 
