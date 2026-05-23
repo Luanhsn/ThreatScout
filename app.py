@@ -57,9 +57,9 @@ def check():
     return jsonify({
         "ip": ip,
         "score": score,
-        "abuseipdb": abuse_data,
-        "alienvault": otx_data,
-        "virustotal": vt_data
+        "abuseipdb": abuse_data["data"]["abuseConfidenceScore"],
+        "alienvault": otx_data["pulse_info"]["count"],
+        "virustotal": vt_data["data"]["attributes"]["last_analysis_stats"]["malicious"]
     })
 
 
