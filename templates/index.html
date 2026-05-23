@@ -118,6 +118,15 @@
         <button onclick="check()">Prüfen</button>
     </div>
 
+    <script>
+        async function check() {
+            const ip = document.getElementById("ipInput").value;
+            const response = await fetch(`/check?ip=${ip}`);
+            const data = await response.json();
+            document.getElementById("result").innerHTML = data.score;
+        }
+    </script>
+
     <div id="result"></div>
 
 </body>
