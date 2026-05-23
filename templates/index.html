@@ -123,7 +123,17 @@
             const ip = document.getElementById("ipInput").value;
             const response = await fetch(`/check?ip=${ip}`);
             const data = await response.json();
-            document.getElementById("result").innerHTML = data.score;
+
+            const score = Math.round(data.score);
+            const scoreClass = score < 30 ? "low" : score < 70 ? "medium" : "high";
+            document.getElementById("result").innerHTML = `
+                <div class="score-box">
+                    <p class="${scoreClass}">${score}</p>
+                </div>
+                <p>${data.abuseipdb}</p>
+                <p>${data.alienvault}</p>
+                <p>${data.virustotal}</p>
+            `;
         }
     </script>
 
