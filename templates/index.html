@@ -130,9 +130,19 @@
                 <div class="score-box">
                     <p class="${scoreClass}">${score}</p>
                 </div>
-                <p>${data.abuseipdb}</p>
-                <p>${data.alienvault}</p>
-                <p>${data.virustotal}</p>
+                <canvas id="myChart"></canvas>
+                <table>
+                    <tr>
+                        <th>AbuseIPDB-Score</th>
+                        <th>AlienVault-Score</th>
+                        <th>VirusTotal-Score</th>
+                    </tr>
+                    <tr>
+                        <td>${data.abuseipdb}</td>
+                        <td>${data.alienvault}</td>
+                        <td>${data.virustotal}</td>
+                    </tr>
+                </table>
             `;
         }
     </script>
