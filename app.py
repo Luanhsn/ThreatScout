@@ -6,16 +6,17 @@ import os
 app = Flask(__name__)
 load_dotenv()
 
-abuseipid_api = os.getenv("ABUSEIPDB_KEY")
+abuseipid_key = os.getenv("ABUSEIPDB_KEY")
 otx_key = os.getenv("OTX_KEY")
 virustotal_key = os.getenv("VIRUSTOTAL_KEY")
 
 
 def get_abuseipdb(ip):
     url = "https://api.abuseipdb.com/api/v2/check"
-    headers = {"Key": abuseipid_api, "Accept": "application/json"}
+    headers = {"Key": abuseipid_key, "Accept": "application/json"}
     params = {"ipAddress": ip, "maxAgeInDays": 90}
     response = requests.get(url, headers=headers, params=params)
+    print(response.json())
     return response.json()
 
 def get_alienvault(ip):
