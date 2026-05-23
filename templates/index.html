@@ -115,11 +115,11 @@
 
     <div class="search-bar">
         <input type="text" id="ipInput" placeholder="z.B. 1.1.1.1 oder example.com" />
-        <button onclick="check()">Prüfen</button>
+        <button onclick="scan()">Prüfen</button>
     </div>
 
     <script>
-        async function check() {
+        async function scan() {
             const ip = document.getElementById("ipInput").value;
             const response = await fetch(`/check?ip=${ip}`);
             const data = await response.json();
