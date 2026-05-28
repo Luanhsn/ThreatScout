@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
+from urllib.parse import urlparse
 import requests
 import os
+import ipaddress
+import socket
 
 app = Flask(__name__)
 load_dotenv()
@@ -30,6 +33,13 @@ def get_virustotal(ip):
     headers = {"x-apikey": virustotal_key}
     response = requests.get(url, headers=headers)
     return response.json()
+
+def get_alienvault_domain(domain):
+    url = f"https://otx.alienvault.com/api/v1/indicators/domain/{domain}/general"
+    headers = {"X-OTX-API-KEY": otx_key}
+    response = requests.get(url, headers=headers)
+    return response.json()
+
 
 def calculate_score(abuse_data, otx_data, vt_data):
     abuseipdb_score = abuse_data["data"]["abuseConfidenceScore"]
