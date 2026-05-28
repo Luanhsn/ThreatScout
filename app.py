@@ -40,6 +40,11 @@ def get_alienvault_domain(domain):
     response = requests.get(url, headers=headers)
     return response.json()
 
+def get_virustotal_domain(domain):
+    url = f"https://www.virustotal.com/api/v3/domains/{domain}"
+    headers = {"x-apikey": virustotal_key}
+    response = requests.get(url, headers=headers)
+    return response.json()
 
 def calculate_score(abuse_data, otx_data, vt_data):
     abuseipdb_score = abuse_data["data"]["abuseConfidenceScore"]
