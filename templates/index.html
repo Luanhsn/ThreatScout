@@ -121,8 +121,8 @@
 
     <script>
         async function scan() {
-            const ip = document.getElementById("ipInput").value;
-            const response = await fetch(`/check?ip=${ip}`);
+            const query = document.getElementById("ipInput").value;
+            const response = await fetch(`/check?query=${query}`);
             const data = await response.json();
 
             const score = Math.round(data.score);
