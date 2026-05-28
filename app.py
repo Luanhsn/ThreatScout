@@ -96,7 +96,7 @@ def check():
     score = calculate_score(abuse_data, otx_data, vt_data)
 
     return jsonify({
-        "ip": ip,
+        "protocol": value,
         "score": score,
         "abuseipdb": abuse_data["data"]["abuseConfidenceScore"],
         "alienvault": otx_data["pulse_info"]["count"],
