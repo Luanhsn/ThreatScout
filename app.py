@@ -66,6 +66,8 @@ def detect_input_type(value):
 
     return "domain"
 
+def resolve_domain(domain):
+    return socket.gethostbyname(domain)
 
 @app.route("/")
 def index():
