@@ -54,6 +54,19 @@ def calculate_score(abuse_data, otx_data, vt_data):
     score = (abuseipdb_score + alienvault_score + virustotal_score) / 3
     return score
 
+def detect_input_type(value):
+    try:
+        ipaddress.ip_address(value)
+        return "ip"
+    except ValueError:
+        pass
+
+    if value.startswith("http://") or value.startswith("https://"):
+        return "url"
+
+    return "domain"
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
