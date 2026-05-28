@@ -73,9 +73,11 @@ def index():
 
 @app.route("/check")
 def check():
-    ip = request.args.get("ip")
-    if not ip:
-        return jsonify({"error": "Keine IP angegeben"}), 400
+    value = request.args.get("query")
+    if not value:
+        return jsonify({"error": "Keine Eingabe"}), 400
+
+    input_type = detect_input_type(value)
 
     abuse_data = get_abuseipdb(ip)
     otx_data = get_alienvault(ip)
