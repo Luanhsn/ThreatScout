@@ -79,9 +79,20 @@ def check():
 
     input_type = detect_input_type(value)
 
-    abuse_data = get_abuseipdb(ip)
-    otx_data = get_alienvault(ip)
-    vt_data = get_virustotal(ip)
+    if input_type == "url":
+        value = urlparse(value).hostname
+
+    if input_type == "ip":
+        abuse_data = get_abuseipdb(value)
+        otx_data = get_alienvault(value)
+        vt_data = get_virustotal(value)
+    else:
+        print("domain:", value)
+        ip = resolve_domain(value)
+        abuse_data = get_abuseipdb(ip)
+        otx_data = get_alienvault_domain(value)
+        vt_data = get_virustotal_domain(value)
+
     score = calculate_score(abuse_data, otx_data, vt_data)
 
     return jsonify({
